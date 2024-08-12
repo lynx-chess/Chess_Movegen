@@ -1,19 +1,18 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
-namespace Runtime
+namespace Runtime;
+
+public class Environment
 {
-    public class Environment
+    public static string GetProcessorName()
     {
-        public static string GetProcessorName()
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             var key = Registry.LocalMachine.OpenSubKey(@"HARDWARE\DESCRIPTION\System\CentralProcessor\0\");
-            return key?.GetValue("ProcessorNameString").ToString() ?? "Not Found";
+            return key?.GetValue("ProcessorNameString")?.ToString() ?? "Not Found";
         }
 
+        return "Not Found";
     }
 }
