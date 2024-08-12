@@ -14,4 +14,7 @@
     <PackageReference Include="System.Runtime" Version="4.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="System.UInt64" Alias="BitBoard" />
+  </ItemGroup>
 </Project>

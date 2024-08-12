@@ -176,6 +176,20 @@ namespace Movegen
                     ulong occ = occs[i]; int offset = 12 * i;
                     for (int r = 0; r < 12; r++)
                     {
+                        bulk ^= Movegen.Implementation.Lynx.Attacks.QueenAttacks(squares[offset + r], occ);
+                    }
+                }
+                double result = perf_poscount * 12000.0 / (stopwatch.Elapsed.TotalSeconds * 1000000000.0);
+                Console.WriteLine($"{"Lynx",-40} {result.ToString("0.00"),-10}");
+            }
+            {
+                Stopwatch stopwatch = Stopwatch.StartNew();
+                ulong bulk = 0;
+                for (int i = 0; i < perf_poscount; i++)
+                {
+                    ulong occ = occs[i]; int offset = 12 * i;
+                    for (int r = 0; r < 12; r++)
+                    {
                         bulk ^= Movegen.Implementation.FancyMagic.Queen(squares[offset + r], occ);
                     }
                 }
@@ -233,6 +247,7 @@ namespace Movegen
         public struct Switch_Jumptable : ISliderAlgorithm { }
         public struct ObstructionDiff : ISliderAlgorithm { }
         public struct Leorik : ISliderAlgorithm { }
+        public struct Lynx : ISliderAlgorithm { }
         public struct HyperbolaQsc : ISliderAlgorithm { }
         public struct FancyMagic : ISliderAlgorithm { }
         public struct FancyMagicUnsafe : ISliderAlgorithm { }
@@ -250,6 +265,7 @@ namespace Movegen
                 TestSlider<Switch_Jumptable>(occs, occs_end, squares);
                 TestSlider<ObstructionDiff>(occs, occs_end, squares);
                 TestSlider<Leorik>(occs, occs_end, squares);
+                TestSlider<Lynx>(occs, occs_end, squares);
                 TestSlider<HyperbolaQsc>(occs, occs_end, squares);
                 TestSlider<FancyMagic>(occs, occs_end, squares);
                 TestSlider<FancyMagicUnsafe>(occs, occs_end, squares);
@@ -294,6 +310,10 @@ namespace Movegen
                 else if (typeof(T) == typeof(Leorik))
                 {
                     return Movegen.Implementation.Leorik.Queen(square, occ);
+                }
+                else if (typeof(T) == typeof(Lynx))
+                {
+                    return Movegen.Implementation.Lynx.Attacks.QueenAttacks(square, occ);
                 }
                 else if (typeof(T) == typeof(HyperbolaQsc))
                 {
