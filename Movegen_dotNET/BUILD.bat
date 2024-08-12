@@ -1,1 +1,1 @@
-dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=true
+dotnet publish -c Release -r win-x64 /p:Optimize=true

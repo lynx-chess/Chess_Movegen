@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -17,4 +17,18 @@
   <ItemGroup>
     <Using Include="System.UInt64" Alias="BitBoard" />
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(Optimized.ToLower())'=='true'">
+    <Configuration>Release</Configuration>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <TieredPGO>true</TieredPGO>
+    <TieredCompilationQuickJitForLoops>true</TieredCompilationQuickJitForLoops>
+    <!--In favour of tiered compilation-->
+    <PublishReadyToRun>false</PublishReadyToRun>
+  </PropertyGroup>
+
 </Project>
