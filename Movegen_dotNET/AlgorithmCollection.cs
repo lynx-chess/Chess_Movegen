@@ -265,8 +265,8 @@ namespace Movegen
                 TestSlider<Switch_Jumptable>(occs, occs_end, squares);
                 TestSlider<ObstructionDiff>(occs, occs_end, squares);
                 TestSlider<Leorik>(occs, occs_end, squares);
-                TestSlider<Lynx>(occs, occs_end, squares);
                 TestSlider<HyperbolaQsc>(occs, occs_end, squares);
+                TestSlider<Lynx>(occs, occs_end, squares);
                 TestSlider<FancyMagic>(occs, occs_end, squares);
                 TestSlider<FancyMagicUnsafe>(occs, occs_end, squares);
                 TestSlider<Pext>(occs, occs_end, squares);
